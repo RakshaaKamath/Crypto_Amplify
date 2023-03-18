@@ -1,0 +1,21 @@
+{
+    "appName": "cryptoamp",
+    "roleName": "pinpointLambdaRole7fa19f55",
+    "cloudformationPolicyName": "cloudformationPolicy7fa19f55",
+    "cloudWatchPolicyName": "cloudWatchPolicy7fa19f55",
+    "pinpointPolicyName": "pinpointPolicy7fa19f55",
+    "authPolicyName": "pinpoint_amplify_7fa19f55",
+    "unauthPolicyName": "pinpoint_amplify_7fa19f55",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

@@ -104,133 +104,24 @@ class _SelectCoinState extends State<SelectCoin> {
               ),
             ),
             Divider(),
+
             Expanded(
+
                 child: Column(
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(
-                      horizontal: myWidth * 0.05, vertical: myHeight * 0.02),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        children: [
-                          Text(
-                            'Low',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey),
-                          ),
-                          SizedBox(
-                            height: myHeight * 0.01,
-                          ),
-                          Text(
-                            '\$' + widget.selectItem.low24H.toString(),
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'High',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey),
-                          ),
-                          SizedBox(
-                            height: myHeight * 0.01,
-                          ),
-                          Text(
-                            '\$' + widget.selectItem.high24H.toString(),
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          Text(
-                            'Vol',
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.grey),
-                          ),
-                          SizedBox(
-                            height: myHeight * 0.01,
-                          ),
-                          Text(
-                            '\$' +
-                                widget.selectItem.totalVolume.toString() +
-                                'M',
-                            style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.normal,
-                                color: Colors.black),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                      horizontal: myWidth * 0.00001, vertical: myHeight * 0.00002),
                 ),
                 SizedBox(
                   height: myHeight * 0.015,
                 ),
-                Container(
-                  height: myHeight * 0.4,
-                  width: myWidth,
-                  // color: Colors.amber,
-                  child: isRefresh == true
-                      ? Center(
-                          child: CircularProgressIndicator(
-                            color: Color(0xffFBC700),
-                          ),
-                        )
-                      : itemChart == null
-                          ? Padding(
-                              padding: EdgeInsets.all(myHeight * 0.06),
-                              child: Center(
-                                child: Text(
-                                  'Attention this Api is free, so you cannot send multiple requests per second, please wait and try again later.',
-                                  style: TextStyle(fontSize: 18),
-                                ),
-                              ),
-                            )
-                          : SfCartesianChart(
-                              trackballBehavior: trackballBehavior,
-                              zoomPanBehavior: ZoomPanBehavior(
-                                  enablePinching: true, zoomMode: ZoomMode.x),
-                              series: <CandleSeries>[
-                                CandleSeries<ChartModel, int>(
-                                    enableSolidCandles: true,
-                                    enableTooltip: true,
-                                    bullColor: Colors.green,
-                                    bearColor: Colors.red,
-                                    dataSource: itemChart!,
-                                    xValueMapper: (ChartModel sales, _) =>
-                                        sales.time,
-                                    lowValueMapper: (ChartModel sales, _) =>
-                                        sales.low,
-                                    highValueMapper: (ChartModel sales, _) =>
-                                        sales.high,
-                                    openValueMapper: (ChartModel sales, _) =>
-                                        sales.open,
-                                    closeValueMapper: (ChartModel sales, _) =>
-                                        sales.close,
-                                    animationDuration: 55)
-                              ],
-                            ),
-                ),
-                SizedBox(
-                  height: myHeight * 0.01,
+                Column(
+                  children: [
+                    Text("Select:",
+                    style: TextStyle(fontSize: 18),),
+
+                  ],
                 ),
                 Center(
                   child: Container(
@@ -242,7 +133,7 @@ class _SelectCoinState extends State<SelectCoin> {
                       itemBuilder: (context, index) {
                         return Padding(
                           padding:
-                              EdgeInsets.symmetric(horizontal: myWidth * 0.02),
+                          EdgeInsets.symmetric(horizontal: myWidth * 0.02),
                           child: GestureDetector(
                             onTap: () {
                               setState(() {
@@ -261,12 +152,12 @@ class _SelectCoinState extends State<SelectCoin> {
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: myWidth * 0.03,
-                                  vertical: myHeight * 0.005),
+                                  horizontal: myWidth * 0.003,
+                                  vertical: myHeight * 0.0001),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 color: textBool[index] == true
-                                    ? Color(0xffFBC700).withOpacity(0.3)
+                                    ? Color(0xff000000).withOpacity(0.3)
                                     : Colors.transparent,
                               ),
                               child: Text(
@@ -280,6 +171,58 @@ class _SelectCoinState extends State<SelectCoin> {
                     ),
                   ),
                 ),
+                Divider(),
+                Container(
+                  height: myHeight * 0.4,
+                  width: myWidth,
+                  //color: Color(0xFFFFE4B2),
+                  child: isRefresh == true
+                      ? Center(
+                          child: CircularProgressIndicator(
+                            color: Color(0xFF000000),
+                          ),
+                        )
+                      : itemChart == null
+                          ? Padding(
+                              padding: EdgeInsets.all(myHeight * 0.06),
+                              child: Center(
+                                child: Text(
+                                  'Attention this Api is free, so you cannot send multiple requests per second, please wait and try again later.',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ),
+                            )
+                          : Padding(
+                    padding: EdgeInsets.all(10),
+                    child: SfCartesianChart(
+                      primaryXAxis: CategoryAxis(visibleMinimum: null, visibleMaximum: null),
+                      trackballBehavior: trackballBehavior,
+                      zoomPanBehavior: ZoomPanBehavior(enablePinching: true, zoomMode: ZoomMode.x),
+                      series: <CandleSeries>[
+                        CandleSeries<ChartModel, int>(
+                            enableSolidCandles: true,
+                            enableTooltip: true,
+                            bullColor: Colors.green,
+                            bearColor: Colors.red,
+                            dataSource: itemChart!,
+                            xValueMapper: (ChartModel sales, _) => sales.time,
+                            lowValueMapper: (ChartModel sales, _) => sales.low,
+                            highValueMapper: (ChartModel sales, _) => sales.high,
+                            openValueMapper: (ChartModel sales, _) => sales.open,
+                            closeValueMapper: (ChartModel sales, _) => sales.close,
+                            animationDuration: 55
+                        ),
+                      ],
+                    ),
+                  )
+
+                ),
+                SizedBox(
+                  height: myHeight * 0.01,
+                ),
+
+
+
                 SizedBox(
                   height: myHeight * 0.04,
                 ),
@@ -288,10 +231,6 @@ class _SelectCoinState extends State<SelectCoin> {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: myWidth * 0.06),
-                      child: Text(
-                        'News',
-                        style: TextStyle(fontSize: 25),
-                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -301,21 +240,80 @@ class _SelectCoinState extends State<SelectCoin> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            child: Text(
-                              'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                              textAlign: TextAlign.justify,
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 17),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Low:   ',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: myHeight * 0.01,
+                                    ),
+                                    Text(
+                                      '\$' + widget.selectItem.low24H.toString(),
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'High:   ',
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.normal,
+                                          color: Colors.grey),
+                                    ),
+                                    SizedBox(
+                                      height: myHeight * 0.01,
+                                    ),
+                                    Text(
+                                      '\$' + widget.selectItem.high24H.toString(),
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.normal,
+                                          color: Color(0xFF000000)),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Vol:   ',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(width: myWidth * 0.01),
+                                    Text(
+                                      '\$' + widget.selectItem.totalVolume.toString() + 'M',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+
+
+                              ],
                             ),
+
                           ),
-                          Container(
-                            width: myWidth * 0.25,
-                            child: CircleAvatar(
-                              radius: myHeight * 0.04,
-                              backgroundImage:
-                                  AssetImage('assets/image/11.PNG'),
-                            ),
-                          )
+
                         ],
                       ),
                     )
@@ -323,70 +321,7 @@ class _SelectCoinState extends State<SelectCoin> {
                 ))
               ],
             )),
-            Container(
-              height: myHeight * 0.1,
-              width: myWidth,
-              // color: Colors.amber,
-              child: Column(
-                children: [
-                  Divider(),
-                  SizedBox(
-                    height: myHeight * 0.01,
-                  ),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: myWidth * 0.05,
-                      ),
-                      Expanded(
-                        flex: 5,
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: myHeight * 0.015),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Color(0xffFBC700)),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.add,
-                                size: myHeight * 0.02,
-                              ),
-                              Text(
-                                'Add to portfolio',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: myWidth * 0.05,
-                      ),
-                      Expanded(
-                        flex: 2,
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: myHeight * 0.012),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.grey.withOpacity(0.2)),
-                          child: Image.asset(
-                            'assets/icons/3.1.png',
-                            height: myHeight * 0.03,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: myWidth * 0.05,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            )
+
           ],
         ),
       ),
@@ -460,3 +395,10 @@ class _SelectCoinState extends State<SelectCoin> {
     }
   }
 }
+
+// year month etc place them properly
+// background colour
+// loading colour into black
+// graph ka side borders from screen
+// graph ka numbers 45 degree slant
+

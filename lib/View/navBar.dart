@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'login.dart';
 import 'anotherPage.dart';
 import 'home.dart';
 
@@ -17,7 +17,7 @@ class _NavBarState extends State<NavBar> {
     Home(),
     AnotherPage(),
     AnotherPage(),
-    AnotherPage(),
+    Login(),
   ];
 
   @override

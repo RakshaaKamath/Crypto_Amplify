@@ -1,21 +1,18 @@
-import 'package:crypto/View/io.dart';
-import 'package:crypto/View/splash.dart';
 import 'package:flutter/material.dart';
-
-
+import 'package:crypto/View/splash.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp ({super.key });
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: IO(),
+      home: Splash(),
     );
   }
 }
